@@ -6,11 +6,11 @@
  */
 
 require_once '../MyWebService.php';
-$email = $_REQUEST['email'];
+$cif = $_REQUEST['email'];
 $password = $_REQUEST['password'];
 
-if (isset($email) && isset($password)) {
-    $resultado = consulta($email, $password);
+if (isset($cif) && isset($password)) {
+    $resultado = consulta($cif, $password);
     echo json_encode($resultado);
 } else {
     echo Protocolo::CR_ERROR_SELECT;
