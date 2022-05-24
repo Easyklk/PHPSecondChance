@@ -7,7 +7,6 @@
 
 require_once '../MyWebService.php';
 require_once '../Modelo/Protocolo.php';
-
 $email = $_REQUEST['email'];
 $password = $_REQUEST['password'];
 
@@ -20,7 +19,7 @@ if (isset($email) && isset($password)) {
 
 function consulta($email, $password) {
     $cbd = new ConexionBD();
-    $sql = "Select * from usuarios where email ='" . $email . "' and password='" . $password . "' and administrador= 1";
+    $sql = "Select * from usuarios where email ='" . $email . "' and password='" . $password . "' and protectora= 1";
     $filas = $cbd->consultaSeleccion($sql);
     return $filas;
 }
