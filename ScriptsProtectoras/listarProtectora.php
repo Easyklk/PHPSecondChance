@@ -12,7 +12,7 @@ echo json_encode($resultado);
 
 function listarProtectora() {
     $cbd = new ConexionBD();
-    $sql = 'SELECT * FROM protectoras';
+    $sql = 'SELECT * FROM protectoras;';
     $filas = $cbd->consultaSeleccion($sql);
 
     return $filas;

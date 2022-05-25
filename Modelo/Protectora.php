@@ -16,16 +16,14 @@ class Protectora {
     private $nombre;
     private $razonSocial;
     private $email;
-    private $password;
     private $telefono;
     private $ubicacion;
 
-    function __construct($cif, $nombreProtectora, $razonSocial, $email, $password, $telefono, $ubicacion) {
+    function __construct($cif, $nombreProtectora, $razonSocial, $email, $telefono, $ubicacion) {
         $this->cif = $cif;
         $this->nombre = $nombreProtectora;
         $this->razonSocial = $razonSocial;
         $this->email = $email;
-        $this->password = $password;
         $this->telefono = $telefono;
         $this->ubicacion = $ubicacion;
     }
@@ -60,14 +58,6 @@ class Protectora {
 
     function setEmail($email) {
         $this->email = $email;
-    }
-
-    function getPassword() {
-        return $this->password;
-    }
-
-    function setPassword($password) {
-        $this->password = $password;
     }
 
     function getTelefono() {
