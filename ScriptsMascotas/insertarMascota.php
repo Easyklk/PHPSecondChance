@@ -7,7 +7,7 @@
 
 require_once '../MyWebService.php';
 $codIdentificador = $_REQUEST['codIdentificador'];
-$nombre = $_REQUEST['nombre'];
+$nombre_protectora = $_REQUEST['nombre'];
 $especie = $_REQUEST['especie'];
 $raza = $_REQUEST['raza'];
 $fechaAcogida = $_REQUEST['fechaAcogida'];
@@ -15,8 +15,8 @@ $foto = $_REQUEST['foto'];
 $cifProtectora = $_REQUEST['cifProtectora'];
 $descripcion = $_REQUEST['descripcion'];
 
-if (isset($codIdentificador) && isset($nombre) && isset($especie) && isset($raza) && isset($fechaAcogida) && isset($foto) && isset($cifProtectora) && isset($descripcion)) {
-    $resultado = insertarMascota($codIdentificador, $nombre, $especie, $raza, $fechaAcogida, $foto, $cifProtectora, $descripcion);
+if (isset($codIdentificador) && isset($nombre_protectora) && isset($especie) && isset($raza) && isset($fechaAcogida) && isset($foto) && isset($cifProtectora) && isset($descripcion)) {
+    $resultado = insertarMascota($codIdentificador, $nombre_protectora, $especie, $raza, $fechaAcogida, $foto, $cifProtectora, $descripcion);
     if ($resultado > 0) {
         echo Protocolo::CR_OK_INSERT;
     } else {

@@ -8,16 +8,14 @@
 require_once '../MyWebService.php';
 require_once '../Modelo/Protocolo.php';
 
-$cif = $_REQUEST['cif'];
-$nombre_protectora = $_REQUEST['nombre_protectora'];
-$razon_soocial = $_REQUEST['razon_social'];
 $email = $_REQUEST['email'];
-$telefono = $_REQUEST['telefono'];
-$ubicacion = $_REQUEST['ubicacion'];
+$password = $_REQUEST['password'];
+$voluntario = $_REQUEST['voluntario'];
+$protectora = $_REQUEST['protectora'];
+$administrador = $_REQUEST['administrador'];
 
-if (isset($cif) && isset($nombre_protectora) && isset($razon_soocial) && isset($email) && isset($nombre_protectora) && isset($telefono) && isset($ubicacion)) {
-    $resultado = insertarProtectora($cif, $nombre_protectora, $razon_soocial, $email, $telefono, $ubicacion);
-
+if (isset($email) && isset($password) && isset($voluntario) && isset($protectora) && isset($administrador)) {
+    $resultado = insertarUsuario($email, $password, $voluntario, $protectora, $administrador);
 //echo $resultado;
     if ($resultado > 0) {
         echo Protocolo::CR_OK_INSERT;
@@ -35,10 +33,10 @@ if (isset($cif) && isset($nombre_protectora) && isset($razon_soocial) && isset($
     echo Protocolo::CR_ERROR_PARAM;
 }
 
-function insertarProtectora($cif, $nombre, $razonSocial, $email, $telefono, $ubicacion) {
+function insertarUsuario($email, $password, $voluntario, $protectora, $administrador) {
     $cbd = new ConexionBD();
-    $sql = "INSERT INTO protectoras VALUES (?,?,?,?,?,?)";
-    $parametros = array($cif, $nombre, $razonSocial, $email, $telefono, $ubicacion);
+    $sql = "INSERT INTO usuarios VALUES (?,?,?,?,?)";
+    $parametros = array($email, $password, $voluntario, $protectora, $administrador);
     $numfilas = $cbd->consultaManipulacion($sql, $parametros);
     return $numfilas;
 }
