@@ -15,12 +15,14 @@ class Usuario {
     private $email;
     private $password;
     private $voluntario;
+    private $protectora;
     private $administrador;
 
-    function __construct($email, $password, $voluntario, $administrador) {
+    function __construct($email, $password, $voluntario, $protectora, $administrador) {
         $this->email = $email;
         $this->password = $password;
         $this->voluntario = $voluntario;
+        $this->protectora = $protectora;
         $this->administrador = $administrador;
     }
 
@@ -40,7 +42,7 @@ class Usuario {
         $this->password = $password;
     }
 
-    function isVoluntario() {
+    function getVoluntario() {
         return $this->voluntario;
     }
 
@@ -48,8 +50,24 @@ class Usuario {
         $this->voluntario = $voluntario;
     }
 
+    function getProtectora() {
+        return $this->protectora;
+    }
+
+    function setProtectora($protectora) {
+        $this->protectora = $protectora;
+    }
+
+    function getAdministrador() {
+        return $this->administrador;
+    }
+
+    function setAdministrador($administrador) {
+        $this->administrador = $administrador;
+    }
+
     function toString() {
-        return "Usuario{" . "email:" . $this->email . ", es voluntario:" . strval($this->voluntario) . ", es administrador:" . strval($this->administrador) . strval('}');
+        return "email: " . $this->email . ", Voluntario: " . strval($this->voluntario) . ", Protectoria: " . strval($this->protectora) . ", Administrador: " . strval($this->administrador) . strval('}');
     }
 
 }
