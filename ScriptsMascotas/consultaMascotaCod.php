@@ -7,14 +7,18 @@
 
 require_once '../MyWebService.php';
 require_once '../Modelo/Protocolo.php';
+$codIdentificador = $_REQUEST['codIdentificador'];
 
-$resultado = listarConsulta();
-echo json_encode($resultado);
+if (isset($codIdentificador)) {
+    $resultado = consulta($codIdentificador);
+    echo json_encode($resultado);
+} else {
+    echo Protocolo::CR_ERROR_SELECT;
+}
 
-function listarConsulta() {
+function consulta($codIdentificador) {
     $cbd = new ConexionBD();
-    $sql = 'SELECT * FROM consultas';
+    $sql = "Select * from mascotas where codIdentificador ='" . $codIdentificador . "'";
     $filas = $cbd->consultaSeleccion($sql);
-
     return $filas;
 }

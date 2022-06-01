@@ -6,6 +6,8 @@
  */
 
 require_once '../MyWebService.php';
+require_once '../Modelo/Protocolo.php';
+
 $codConsulta = $_REQUEST['codConsulta'];
 $codMascota = $_REQUEST['codMascota'];
 $dniVoluntario = $_REQUEST['dniVoluntario'];

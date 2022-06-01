@@ -6,7 +6,6 @@
  */
 
 $filename = $_GET['filename'];
-echo $filename;
 $fileData = file_get_contents('php://input');
 $fhandle = fopen($filename, 'wb');
 fwrite($fhandle, $fileData);

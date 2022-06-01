@@ -6,6 +6,7 @@
  */
 
 require_once '../MyWebService.php';
+require_once '../Modelo/Protocolo.php';
 
 $codigo = $_REQUEST['codigo'];
 

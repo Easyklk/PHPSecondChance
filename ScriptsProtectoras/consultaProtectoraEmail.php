@@ -7,14 +7,18 @@
 
 require_once '../MyWebService.php';
 require_once '../Modelo/Protocolo.php';
+$email = $_REQUEST['email'];
 
-$resultado = listarConsulta();
-echo json_encode($resultado);
+if (isset($email)) {
+    $resultado = consulta($email);
+    echo json_encode($resultado);
+} else {
+    echo Protocolo::CR_ERROR_SELECT;
+}
 
-function listarConsulta() {
+function consulta($email) {
     $cbd = new ConexionBD();
-    $sql = 'SELECT * FROM consultas';
+    $sql = "Select * from protectoras where email ='" . $email . "'";
     $filas = $cbd->consultaSeleccion($sql);
-
     return $filas;
 }
