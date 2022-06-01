@@ -9,21 +9,16 @@ require_once '../MyWebService.php';
 require_once '../Modelo/Protocolo.php';
 
 $codIdentificador = $_REQUEST['codIdentificador'];
-$nombre_protectora = $_REQUEST['nombre'];
-$especie = $_REQUEST['especie'];
-$raza = $_REQUEST['raza'];
-$fechaAcogida = $_REQUEST['fechaAcogida'];
 $foto = $_REQUEST['foto'];
-$cifProtectora = $_REQUEST['cifProtectora'];
 $descripcion = $_REQUEST['descripcion'];
 
-if (isset($codIdentificador) && isset($nombre_protectora) && isset($especie) && isset($raza) && isset($fechaAcogida) && isset($foto) && isset($cifProtectora) && isset($descripcion)) {
-    $resultado = modificarMascota($nombre, $especie, $raza, $fechaAcogida, $foto, $cifProtectora, $descripcion, $codIdentificador);
+if (isset($codIdentificador) && isset($foto) && isset($descripcion)) {
+    $resultado = modificarMascota($codIdentificador, $foto, $descripcion);
     if ($resultado > 0) {
         echo Protocolo::CR_OK_INSERT;
     } else {
 
-        // echo Protocolo::CR_ERROR_INSERT;
+// echo Protocolo::CR_ERROR_INSERT;
 
         if ($resultado == -1) {
             echo Protocolo::CR_ERROR_KP_REPETED;
@@ -35,11 +30,11 @@ if (isset($codIdentificador) && isset($nombre_protectora) && isset($especie) && 
     echo Protocolo::CR_ERROR_PARAM;
 }
 
-function modificarMascota($nombre, $especie, $raza, $fechaAcogida, $foto, $cifProtectora, $descripcion, $codIdentificador) {
+function modificarMascota($codIdentificador, $foto, $descripcion) {
     $cbd = new ConexionBD();
-    $sql = "UPTADE mascotas set nombre = ?, especie= ?, raza= ?, fecha_acogida = ?, foto = ?, cifProtectora = ?, descripcion = ? where codIdentificador = ?";
+    $sql = "UPDATE mascotas set foto = ?, descripcion = ? where codIdentificador = ?";
 
-    $parametros = array($nombre, $especie, $raza, $fechaAcogida, $foto, $cifProtectora, $descripcion, $codIdentificador);
+    $parametros = array($foto, $descripcion, $codIdentificador);
     $numfilas = $cbd->consultaManipulacion($sql, $parametros);
     return $numfilas;
 }
