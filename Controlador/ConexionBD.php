@@ -47,6 +47,22 @@ class ConexionBD {
         return $filas;
     }
 
+    function consultaUnaSeleccion($sql) {
+        $conexion = $this->abrirConexion();
+
+        $consulta = $conexion->query($sql);
+
+        $filas = array();
+
+        while ($fila = $consulta->fetch(PDO::FETCH_OBJ)) {
+            $filas[] = $fila;
+            //array_push($filas,$fila);          
+        }
+
+        $this->cerrarConexion();
+        return $filas;
+    }
+
     function consultaManipulacion($sql, $parametros) {
         $resultado = false;
         $conexion = $this->abrirConexion();
