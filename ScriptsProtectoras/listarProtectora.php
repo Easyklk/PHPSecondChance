@@ -6,6 +6,7 @@
  */
 
 require_once '../MyWebService.php';
+require_once '../Modelo/Protocolo.php';
 
 $resultado = listarProtectora();
 echo json_encode($resultado);

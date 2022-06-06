@@ -13,7 +13,7 @@ echo json_encode($resultado);
 
 function listarConsulta() {
     $cbd = new ConexionBD();
-    $sql = 'SELECT * FROM consultas';
+    $sql = 'SELECT * FROM consultas;';
     $filas = $cbd->consultaSeleccion($sql);
 
     return $filas;
