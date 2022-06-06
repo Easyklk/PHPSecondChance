@@ -8,7 +8,6 @@
 require_once '../MyWebService.php';
 require_once '../Modelo/Protocolo.php';
 $email = $_REQUEST['email'];
-
 if (isset($email)) {
     $resultado = consulta($email);
     echo json_encode($resultado);
