@@ -8,13 +8,17 @@
 require_once '../MyWebService.php';
 require_once '../Modelo/Protocolo.php';
 
-$resultado = listarConsulta();
-echo json_encode($resultado);
+$codConsulta = $_REQUEST['cod_consulta'];
+if (isset($codConsulta)) {
+    $resultado = consulta($codConsulta);
+    echo json_encode($resultado);
+} else {
+    echo Protocolo::CR_ERROR_SELECT;
+}
 
-function listarConsulta() {
+function consulta($codConsulta) {
     $cbd = new ConexionBD();
-    $sql = 'SELECT * FROM consultas';
+    $sql = "Select * from consultas where cod_consulta='" . $codConsulta . "'";
     $filas = $cbd->consultaSeleccion($sql);
-
     return $filas;
 }

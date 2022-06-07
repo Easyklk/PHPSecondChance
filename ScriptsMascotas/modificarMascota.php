@@ -13,12 +13,10 @@ $foto = $_REQUEST['foto'];
 $descripcion = $_REQUEST['descripcion'];
 
 if (isset($codIdentificador) && isset($foto) && isset($descripcion)) {
-    $resultado = modificarMascota($codIdentificador, $foto, $descripcion);
+    $resultado = modificarMascota($foto, $descripcion, $codIdentificador);
     if ($resultado > 0) {
         echo Protocolo::CR_OK_INSERT;
     } else {
-
-// echo Protocolo::CR_ERROR_INSERT;
 
         if ($resultado == -1) {
             echo Protocolo::CR_ERROR_KP_REPETED;
@@ -30,7 +28,7 @@ if (isset($codIdentificador) && isset($foto) && isset($descripcion)) {
     echo Protocolo::CR_ERROR_PARAM;
 }
 
-function modificarMascota($codIdentificador, $foto, $descripcion) {
+function modificarMascota($foto, $descripcion, $codIdentificador) {
     $cbd = new ConexionBD();
     $sql = "UPDATE mascotas set foto = ?, descripcion = ? where codIdentificador = ?";
 
