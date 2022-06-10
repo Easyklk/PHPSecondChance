@@ -8,17 +8,18 @@
 require_once '../MyWebService.php';
 require_once '../Modelo/Protocolo.php';
 
+$cod_consulta = $_REQUEST['cod_consulta'];
 $cif_protectora = $_REQUEST['cif_protectora'];
-if (isset($cif_protectora)) {
-    $resultado = consulta($cif_protectora);
+if (isset($cod_consulta)) {
+    $resultado = consulta($cod_consulta, $cif_protectora);
     echo json_encode($resultado);
 } else {
     echo Protocolo::CR_ERROR_SELECT;
 }
 
-function consulta($cif_protectora) {
+function consulta($cod_consulta, $cif_protectora) {
     $cbd = new ConexionBD();
-    $sql = "SELECT * FROM consultas AS co INNER JOIN mascotas AS mas ON co.cod_mascota = mas.codIdentificador WHERE mas.cif_protectora='" . $cif_protectora . "'";
+    $sql = "SELECT * FROM consultas AS co INNER JOIN mascotas AS mas ON co.cod_mascota = mas.codIdentificador WHERE cod_consulta=" . $cod_consulta . " AND mas.cif_protectora='" . $cif_protectora . "'";
     $filas = $cbd->consultaSeleccion($sql);
     return $filas;
 }

@@ -20,8 +20,6 @@ if (isset($dniVoluntario) && isset($horario) && isset($informacion)) {
         echo Protocolo::CR_OK_INSERT;
     } else {
 
-        // echo Protocolo::CR_ERROR_INSERT;
-
         if ($resultado == -1) {
             echo Protocolo::CR_ERROR_KP_REPETED;
         } else {

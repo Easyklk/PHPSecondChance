@@ -8,13 +8,18 @@
 require_once '../MyWebService.php';
 require_once '../Modelo/Protocolo.php';
 
-$resultado = listarConsulta();
-echo json_encode($resultado);
+$cif_Protectora = $_REQUEST['cif_Protectora'];
 
-function listarConsulta() {
+if (isset($cif_Protectora)) {
+    $resultado = consulta($cif_Protectora);
+    echo json_encode($resultado);
+} else {
+    echo Protocolo::CR_ERROR_SELECT;
+}
+
+function consulta($cif_Protectora) {
     $cbd = new ConexionBD();
-    $sql = 'SELECT * FROM consultas;';
+    $sql = "Select * from mascotas where cif_Protectora ='" . $cif_Protectora . "'";
     $filas = $cbd->consultaSeleccion($sql);
-
     return $filas;
 }
